@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tiki Topple 🌴</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- ═══════════════════ SETUP SCREEN ═══════════════════ -->
+    <div id="setup-screen" class="screen active">
+      <div class="setup-card">
+        <h1 class="logo">🌴 Tiki Topple 🌴</h1>
+        <p class="tagline">Race your tiki to the top — before someone topples it!</p>
+
+        <div class="section-label">Number of Players</div>
+        <div class="count-row">
+          <button class="count-btn active" data-n="2">2</button>
+          <button class="count-btn" data-n="3">3</button>
+          <button class="count-btn" data-n="4">4</button>
+        </div>
+
+        <div class="section-label">Player Names</div>
+        <div id="player-name-inputs"></div>
+
+        <button id="start-btn" class="btn-primary">▶ Start Game</button>
+
+        <details class="rules-details">
+          <summary>How to Play</summary>
+          <ul class="rules-list">
+            <li>Each player is secretly assigned one <strong>Tiki</strong>.</li>
+            <li>The 8 tikis form a totem pole in random order.</li>
+            <li>On your turn, play one card from your hand of 5.</li>
+            <li><strong>↑ Move Up</strong> — advance a specific tiki one step up.</li>
+            <li><strong>↓ Move Down</strong> — push a specific tiki one step down.</li>
+            <li><strong>💥 Topple</strong> — remove the tiki at the very top forever.</li>
+            <li>After playing, you draw one replacement card.</li>
+            <li>The game ends after <strong>4 topples</strong>.</li>
+            <li>The player whose tiki sits <strong>highest</strong> in the remaining pole wins!</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ GAME SCREEN ═══════════════════ -->
+    <div id="game-screen" class="screen">
+
+      <!-- Top bar -->
+      <header class="game-header">
+        <span class="header-title">🌴 Tiki Topple</span>
+        <span id="topple-counter" class="topple-counter"></span>
+        <span id="deck-counter" class="deck-counter"></span>
+      </header>
+
+      <div class="game-body">
+
+        <!-- Left: Totem Pole -->
+        <section class="pole-section">
+          <h2 class="section-heading">Totem Pole</h2>
+          <div class="pole-wrap">
+            <div class="pole-post"></div>
+            <div id="pole-tikis"></div>
+          </div>
+          <div class="toppled-area">
+            <span class="toppled-label">💥 Toppled:</span>
+            <div id="toppled-list"></div>
+          </div>
+        </section>
+
+        <!-- Centre: Turn info + Hand -->
+        <section class="hand-section">
+          <div class="turn-header">
+            <div id="cur-player-name" class="cur-player-name"></div>
+            <div id="cur-tiki-info" class="cur-tiki-info"></div>
+          </div>
+
+          <!-- Hand area with "pass device" overlay -->
+          <div class="hand-wrap">
+            <div id="hand-overlay" class="hand-overlay">
+              <div class="overlay-inner">
+                <div class="overlay-emoji">🙈</div>
+                <div class="overlay-player"></div>
+                <p>Other players look away!</p>
+                <button id="reveal-btn" class="btn-primary">Reveal My Hand</button>
+              </div>
+            </div>
+            <div class="hand-label">Your Hand — click a card to play it</div>
+            <div id="hand-cards" class="hand-cards"></div>
+          </div>
+        </section>
+
+        <!-- Right: Players + Log -->
+        <section class="info-section">
+          <h2 class="section-heading">Players</h2>
+          <div id="players-panel" class="players-panel"></div>
+
+          <h2 class="section-heading" style="margin-top:1.2rem">Game Log</h2>
+          <div id="log-list" class="log-list"></div>
+        </section>
+
+      </div><!-- .game-body -->
+    </div><!-- #game-screen -->
+
+    <!-- ═══════════════════ GAME OVER SCREEN ═══════════════════ -->
+    <div id="gameover-screen" class="screen">
+      <div class="gameover-card">
+        <div class="gameover-title">🏆 Game Over!</div>
+        <div id="winner-name" class="winner-name"></div>
+
+        <div class="go-columns">
+          <div>
+            <h3 class="go-section-heading">Final Rankings</h3>
+            <div id="rankings"></div>
+          </div>
+          <div>
+            <h3 class="go-section-heading">Final Totem Pole</h3>
+            <div id="final-pole" class="final-pole"></div>
+          </div>
+        </div>
+
+        <button id="play-again-btn" class="btn-primary" style="margin-top:2rem">↩ Play Again</button>
+      </div>
+    </div>
+
+  </div><!-- #app -->
+
+  <script src="game.js"></script>
+</body>
+</html>
